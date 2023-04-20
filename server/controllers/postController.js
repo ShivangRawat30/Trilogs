@@ -1,6 +1,7 @@
 import Post from "../models/Post.js";
+import User from "../models/User.js";
 
-// CREATE
+/* CREATE */
 export const createPost = async (req, res) => {
   try {
     const { userId, description, picturePath } = req.body;
@@ -14,8 +15,10 @@ export const createPost = async (req, res) => {
       userPicturePath: user.picturePath,
       picturePath,
       likes: {},
+      comments: [],
     });
     await newPost.save();
+
     const post = await Post.find();
     res.status(201).json(post);
   } catch (err) {
@@ -23,7 +26,7 @@ export const createPost = async (req, res) => {
   }
 };
 
-// READ
+/* READ */
 export const getFeedPosts = async (req, res) => {
   try {
     const post = await Post.find();
@@ -43,7 +46,7 @@ export const getUserPosts = async (req, res) => {
   }
 };
 
-// UPDATE
+/* UPDATE */
 export const likePost = async (req, res) => {
   try {
     const { id } = req.params;
@@ -62,6 +65,7 @@ export const likePost = async (req, res) => {
       { likes: post.likes },
       { new: true }
     );
+
     res.status(200).json(updatedPost);
   } catch (err) {
     res.status(404).json({ message: err.message });
