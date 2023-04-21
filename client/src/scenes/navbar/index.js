@@ -57,7 +57,7 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          Trilogs
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
