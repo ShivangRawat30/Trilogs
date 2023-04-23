@@ -24,7 +24,7 @@ const UserWidget = ({ userId, picturePath }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getUser = async () => {
     const response = await fetch(
-      `https://trilogs.onrender.com//users/${userId}`,
+      `https://trilogs.onrender.com/users/${userId}`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
